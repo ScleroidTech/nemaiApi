@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
 	password : '',
-	database : 'client',
+	database : 'chat',
 	port :'3306',
 	 debug: false,
         multipleStatements: true
