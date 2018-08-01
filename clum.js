@@ -1,4 +1,4 @@
-var express = require('express');
+ require('express');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require("body-parser");
@@ -7,10 +7,10 @@ var bodyParser = require("body-parser");
 //const MSG91 = require("./MSG91");
 var connection = mysql.createConnection({
 	//connectionLimit : 25,
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'pdetails',
+	host     : 'nemainew.cyelmj7smxyj.us-east-1.rds.amazonaws.com',
+	user     : 'nemai1234',
+	password : 'nemai1234',
+	database : 'nemai1234',
 	port :'3306',
 	 debug: false,
         multipleStatements: true
