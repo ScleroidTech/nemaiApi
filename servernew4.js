@@ -492,27 +492,27 @@ app.post('/check', function (req, res) {
 		}
 	});
 
+	app.get('/customer', function (req, res) {
+		var data1, data2;
+		var data = {
+			"error": 1,
+			"deliverytime": "",
+			"ServiceType": ""
+		};
+		connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error, data) {
+			if (error) throw error;
 
-});
+			var str1 = JSON.stringify(data[1]);
+			var str2 = JSON.stringify(data[2]);
 
+			res.end(JSON.stringify(data[0]) + ',' + JSON.stringify(data[1]) + ',' + JSON.stringify(data[2]));
 
-app.get('/customer', function (req, res) {
-	var data1, data2;
-	var data = {
-		"error": 1,
-		"deliverytime": "",
-		"ServiceType": ""
-	};
-	connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error, data) {
-		if (error) throw error;
-
-		var str1 = JSON.stringify(data[1]);
-		var str2 = JSON.stringify(data[2]);
-
-		res.end(JSON.stringify(data[0]) + ',' + JSON.stringify(data[1]) + ',' + JSON.stringify(data[2]));
-
+		});
 	});
+
 });
+
+
 
 app.get('/api/getallregister', function (req, res) {
 
