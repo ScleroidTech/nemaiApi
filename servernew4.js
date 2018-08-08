@@ -574,7 +574,7 @@ app.post('/register', function (req, res) {
 				data["error"] = 0;
 				data["newuser"] = "new user Added Successfully";
 
-				console.log("Added: " + [fname, lname, email, phone, gender, pan, dob, city]);
+				console.log("Added: " + [fname, lname, email, phone, gender, dob, city]);
 				//log.info("Added: " + [name, description, price]);
 			}
 			res.json(data);
