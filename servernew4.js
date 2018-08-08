@@ -493,63 +493,24 @@ app.post('/check', function (req, res) {
 	});
 
 
-	app.get('/customer', function (req, res) {
-		var data1, data2;
-		var data = {
-			"error": 1,
-			"deliverytime": "",
-			"ServiceType": ""
-		};
-		connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error, data) {
-			if (error) throw error;
+});
 
-			var str1 = JSON.stringify(data[1]);
-			var str2 = JSON.stringify(data[2]);
 
-			res.end(JSON.stringify(data[0]) + ',' + JSON.stringify(data[1]) + ',' + JSON.stringify(data[2]));
+app.get('/customer', function (req, res) {
+	var data1, data2;
+	var data = {
+		"error": 1,
+		"deliverytime": "",
+		"ServiceType": ""
+	};
+	connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error, data) {
+		if (error) throw error;
 
-		});
-	});
+		var str1 = JSON.stringify(data[1]);
+		var str2 = JSON.stringify(data[2]);
 
-	app.post('/register', function (req, res) {
-		var fname = req.body.fname;
-		var lname = req.body.lname;
-		var email = req.body.email;
-		var phone = req.body.phone;
-		var gender = req.body.gender;
-		var city = req.body.city;
-		var password = req.body.password;
-		var dob = req.body.dob;
-		console.log(fname);
-		var data = {
-			"error": 1,
-			"newuser": ""
-		};
-		//message='';
-		console.log('POST Request :: /insert: ');
-		//log.info('POST Request :: /insert: ');
-		if (!!fname && !!lname && !!email && !!phone && !!gender && !!password && !!dob && !!city) {
-			//pool.getConnection(function (err, connection) {
-			connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, dob = ?,city =?", [fname, lname, email, phone, gender, pan, dob, city], function (err, rows, fields) {
-				if (!!err) {
-					data["newuser"] = "Error Adding data";
-					console.log(err);
-					//log.error(err);
-				} else {
-					data["error"] = 0;
-					data["newuser"] = "new user Added Successfully";
-					console.log("Added: " + [fname, lname, email, phone, gender, pan, dob, city]);
-					//log.info("Added: " + [name, description, price]);
-				}
-				res.json(data);
-				// message = "Succesfully! Your account has been created.";
+		res.end(JSON.stringify(data[0]) + ',' + JSON.stringify(data[1]) + ',' + JSON.stringify(data[2]));
 
-			});
-
-		} else {
-			data["newuser"] = "Please provide all required data (i.e : fname, lname, email, phone, gender, pan, dob, city)";
-			res.json(data);
-		}
 	});
 });
 
@@ -584,6 +545,47 @@ app.get('/api/getallregister', function (req, res) {
 
 });
 
+
+app.post('/register', function (req, res) {
+	var fname = req.body.fname;
+	var lname = req.body.lname;
+	var email = req.body.email;
+	var phone = req.body.phone;
+	var gender = req.body.gender;
+	var city = req.body.city;
+	var password = req.body.password;
+	var dob = req.body.dob;
+	console.log(fname);
+	var data = {
+		"error": 1,
+		"newuser": ""
+	};
+	//message='';
+	console.log('POST Request :: /insert: ');
+	//log.info('POST Request :: /insert: ');
+	if (!!fname && !!lname && !!email && !!phone && !!gender && !!password && !!dob && !!city) {
+		//pool.getConnection(function (err, connection) {
+		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, dob = ?,city =?", [fname, lname, email, phone, gender, pan, dob, city], function (err, rows, fields) {
+			if (!!err) {
+				data["newuser"] = "Error Adding data";
+				console.log(err);
+				//log.error(err);
+			} else {
+				data["error"] = 0;
+				data["newuser"] = "new user Added Successfully";
+				console.log("Added: " + [fname, lname, email, phone, gender, pan, dob, city]);
+				//log.info("Added: " + [name, description, price]);
+			}
+			res.json(data);
+			// message = "Succesfully! Your account has been created.";
+
+		});
+
+	} else {
+		data["newuser"] = "Please provide all required data (i.e : fname, lname, email, phone, gender, pan, dob, city)";
+		res.json(data);
+	}
+});
 
 app.post('/login', function (req, res) {
 	var email = req.body.email;
