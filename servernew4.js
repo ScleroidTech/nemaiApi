@@ -565,7 +565,7 @@ app.post('/register', function (req, res) {
 	//log.info('POST Request :: /insert: ');
 	if (!!fname && !!lname && !!email && !!phone && !!gender && !!password && !!dob && !!city) {
 		//pool.getConnection(function (err, connection) {
-		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, dob = ?,city =?", [fname, lname, email, phone, gender, pan, dob, city], function (err, rows, fields) {
+		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, dob = ?,city =?", [fname, lname, email, phone, gender, dob, city], function (err, rows, fields) {
 			if (!!err) {
 				data["newuser"] = "Error Adding data";
 				console.log(err);
