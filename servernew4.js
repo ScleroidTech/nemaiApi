@@ -594,7 +594,7 @@ app.post('/register', function (req, res) {
 		});
 
 	} else {
-		data["newuser"] = "Please provide all required data (i.e : fname, lname, email, phone, gender, pan, dob, city)";
+		data["newuser"] = "Please provide all required data (i.e : fname, lname, email, phone, gender, pan, dob, cxucoity)";
 		res.json(data);
 	}
 });
