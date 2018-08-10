@@ -555,7 +555,7 @@ app.post('/register', function (req, res) {
 	var city = req.body.city;
 	var password = req.body.password;
 	var dob = req.body.dob;
-	console.log(req.body);
+	console.log(req.headers);
 	var data = {
 		"error": 1,
 		"newuser": ""
