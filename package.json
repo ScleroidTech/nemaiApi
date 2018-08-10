@@ -2,11 +2,10 @@
   "name": "Nemai App",
   "version": "0.3.5",
   "private": true,
-"main":"servernew4.js",
- "scripts": {
+  "main": "servernew4.js",
+  "scripts": {
     "dev": "nodemon server.js"
   },
- 
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

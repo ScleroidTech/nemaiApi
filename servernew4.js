@@ -23,19 +23,29 @@ connection.connect(function (err) {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); // Body parser use JSON data
+// default route
+app.get('/', function (req, res) {
+	return res.send({
+		error: true,
+		message: 'Something\'s cooking here Check back soon'
+	})
+});
 
 
 app.post('/search', function (req, response) {
 	var pincode = req.body.pincode;
 	connection.query('SELECT pincode,location,state,area from state where pincode = ?', [pincode], function (err, rows, fields) {
-		if (err) throw err;
+		if (err) {
+			response.status(500).send("SOmething went wrong" + err);
+			throw err;
+		}
 
 		var data = [];
 
 		for (i = 0; i < rows.length; i++) {
 			data.push(rows[i].pincode + ',' + rows[i].location + ',' + rows[i].state + ',' + rows[i].area);
 		}
-		response.send(JSON.stringify(data));
+		response.status(200).send(JSON.stringify(data));
 		//console.log(JSON.stringify(data));
 		//console.log(JSON.stringify(data));
 		//console.log(req.query.key);
