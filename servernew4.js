@@ -514,7 +514,6 @@ app.post('/check', function (req, res) {
 });
 
 
-
 app.get('/api/getallregister', function (req, res) {
 
 	var data = {
@@ -556,7 +555,7 @@ app.post('/register', function (req, res) {
 	var city = req.body.city;
 	var password = req.body.password;
 	var dob = req.body.dob;
-	console.log(fname);
+	console.log(req);
 	var data = {
 		"error": 1,
 		"newuser": ""
