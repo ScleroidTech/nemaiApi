@@ -562,9 +562,10 @@ app.post('/register', function (req, res) {
 	var email = req.body.email;
 	var phone = req.body.phone;
 	var gender = req.body.gender;
-	var city = req.body.city;
+	//var city = req.body.city;
 	var password = req.body.password;
-	var dob = req.body.dob;
+	var loginMethod = req.body.login_method;
+//	var dob = req.body.dob;
 	console.log(req.headers);
 	var data = {
 		"error": 1,
@@ -573,9 +574,9 @@ app.post('/register', function (req, res) {
 	//message='';
 	console.log('POST Request :: /insert: ');
 	//log.info('POST Request :: /insert: ');
-	if (!!fname && !!lname && !!email && !!phone && !!gender && !!password && !!dob && !!city) {
+	if (!!fname && !!lname && !!email && !!phone && !!gender && !!password /* && !!dob && !!city*/) {
 		//pool.getConnection(function (err, connection) {
-		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, dob = ?,city =?", [fname, lname, email, phone, gender, password, dob, city], function (err, rows, fields) {
+		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, loginMethod = ?"/*, dob = ?,city =?*/, [fname, lname, email, phone, gender, password, loginMethod/*, dob, city*/], function (err, rows, fields) {
 			if (!!err) {
 				data["newuser"] = "Error Adding data";
 				console.log(err);
@@ -584,7 +585,7 @@ app.post('/register', function (req, res) {
 				data["error"] = 0;
 				data["newuser"] = "new user Added Successfully";
 
-				console.log("Added: " + [fname, lname, email, phone, gender, dob, city]);
+				console.log("Added: " + [fname, lname, email, phone, gender, loginMethod/*, dob, city*/]);
 				//log.info("Added: " + [name, description, price]);
 			}
 			res.json(data);
