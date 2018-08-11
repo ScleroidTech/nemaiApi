@@ -581,21 +581,21 @@ app.post('/register', function (req, res) {
 				if (err.errno === 1062) {
 					data["message"] = "Duplicate Data Entered";
 					//	console.log(err);
-					res.status(209).json(data);
-					console.log.error(err);
+					res.status(406).json(data);
+					console.log(err);
 				}
 				else {
 					data["message"] = "Error Occured";
 					//	console.log(err);
-					res.status(210).json(data);
-					console.log.error(err);
+					res.status(412).json(data);
+					console.log(err);
 				}
 			} else {
 
 				data["message"] = "new user Added Successfully";
 
 				console.log("Added: " + [fname, lname, email, phone, gender, loginMethod/*, dob, city*/]);
-				res.status(200).json(data);
+				res.status(201).json(data);
 				//log.info("Added: " + [name, description, price]);
 			}
 			//	res.json(data);
@@ -605,7 +605,7 @@ app.post('/register', function (req, res) {
 
 	} else {
 		data["message"] = "Some Fields missing";
-		res.status(208).json(data);
+		res.status(401).json(data);
 	}
 });
 
