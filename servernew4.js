@@ -566,10 +566,10 @@ app.post('/register', function (req, res) {
 	var password = req.body.password;
 	var loginMethod = req.body.login_method;
 //	var dob = req.body.dob;
-	console.log(req.headers);
+//	console.log(req.headers);
 	var data = {
-		"error": 1,
-		"newuser": ""
+
+		"message": ""
 	};
 	//message='';
 	console.log('POST Request :: /insert: ');
@@ -578,24 +578,34 @@ app.post('/register', function (req, res) {
 		//pool.getConnection(function (err, connection) {
 		connection.query("INSERT INTO registration SET fname = ?, lname = ?, email = ?, phone = ?, gender = ?,  password = ?, loginMethod = ?"/*, dob = ?,city =?*/, [fname, lname, email, phone, gender, password, loginMethod/*, dob, city*/], function (err, rows, fields) {
 			if (!!err) {
-				data["newuser"] = "Error Adding data";
-				console.log(err);
-				//log.error(err);
+				if (err.errno === 1062) {
+					data["message"] = "Duplicate Data Entered";
+					//	console.log(err);
+					res.status(209).json(data);
+					console.log.error(err);
+				}
+				else {
+					data["message"] = "Error Occured";
+					//	console.log(err);
+					res.status(210).json(data);
+					console.log.error(err);
+				}
 			} else {
-				data["error"] = 0;
-				data["newuser"] = "new user Added Successfully";
+
+				data["message"] = "new user Added Successfully";
 
 				console.log("Added: " + [fname, lname, email, phone, gender, loginMethod/*, dob, city*/]);
+				res.status(200).json(data);
 				//log.info("Added: " + [name, description, price]);
 			}
-			res.json(data);
+			//	res.json(data);
 			// message = "Succesfully! Your account has been created.";
 
 		});
 
 	} else {
-		data["newuser"] = "Please provide all required data (i.e : fname, lname, email, phone, gender, pan, dob, cxucoity)";
-		res.json(data);
+		data["message"] = "Some Fields missing";
+		res.status(208).json(data);
 	}
 });
 
