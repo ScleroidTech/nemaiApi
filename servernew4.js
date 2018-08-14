@@ -80,10 +80,10 @@ app.post('/check', function (req, res) {
 
 	console.log(user_gms1);
 
-	var org = [req.body.demo];
+    var org = [req.body.origin];
 console.log(org);
 console.log("log1");
-	var dest = [req.body.dest];
+    var dest = [req.body.destination];
 	var dist;
 	//console.log(dest);
 	//console.log("log2");//AIzaSyAykFlST8qAZY7EzGLEN4lTTNpPirenuVE//AlzaSyBQVmATq4mGUO3FKDaxNQb8bDQhqtEpASU
@@ -91,7 +91,8 @@ console.log("log1");
 	distance.units('metric');
 
 	distance.matrix(org, dest, function (err, distances) {
-		if (distances.status == 'OK') {
+        console.log("distances  " + distances.toString());
+        if (distances.status === 'OK') {
 			for (var i = 0; i < org.length; i++) {
 				for (var j = 0; j < dest.length; j++) {
 					var origin = distances.origin_addresses[i];
