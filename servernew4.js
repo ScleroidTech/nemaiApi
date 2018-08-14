@@ -75,8 +75,9 @@ app.post('/check', function (req, res) {
 	var length = req.body.length;
 	var width = req.body.width;
 	var height = req.body.height;
-	console.log(dob);
-	var user_gms1 = (length * width * height) / 4750;
+    console.log(dob, parcel, weight, package, length, width, height);
+    var user_gms1 = (length * width * height) / 4750;//why
+
 	console.log(user_gms1);
 
 	var org = [req.body.demo];
