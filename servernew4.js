@@ -68,20 +68,20 @@ app.post('/check', function (req, res) {
 
 	var dob = req.body.dob;
 
-	//console.log("package");
+	console.log("package");
 	var parcel = req.body.parcel;
 	var weight = req.body.weight;
 	var package = req.body.package;
 	var length = req.body.length;
 	var width = req.body.width;
 	var height = req.body.height;
-	//console.log(dob);
+	console.log(dob);
 	var user_gms1 = (length * width * height) / 4750;
-	//console.log(user_gms1);
+	console.log(user_gms1);
 
 	var org = [req.body.demo];
-//console.log(org);
-//console.log("log1");	
+console.log(org);
+console.log("log1");
 	var dest = [req.body.dest];
 	var dist;
 	//console.log(dest);
