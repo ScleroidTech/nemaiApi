@@ -85,7 +85,7 @@ console.log(org);
 console.log("log1");
     var dest = [req.body.destination];
 	var dist;
-	//console.log(dest);
+    console.log(dest);
 	//console.log("log2");//AIzaSyAykFlST8qAZY7EzGLEN4lTTNpPirenuVE//AlzaSyBQVmATq4mGUO3FKDaxNQb8bDQhqtEpASU
 	distance.key('AIzaSyCgbkUKubYAtJTWwSEdSh39yLsOAM_POHw');
 	distance.units('metric');
@@ -93,12 +93,19 @@ console.log("log1");
 	distance.matrix(org, dest, function (err, distances) {
         console.log("distances  " + distances.toString());
         if (distances.status === 'OK') {
+            console.log("inside the if means distance status is ok ");
 			for (var i = 0; i < org.length; i++) {
+                console.log("inside the first for for iteration no " + i);
 				for (var j = 0; j < dest.length; j++) {
+                    console.log("inside the second for for iteration no " + j);
 					var origin = distances.origin_addresses[i];
+                    console.log("new origin " + origin);
 					var destination = distances.destination_addresses[j];
+                    console.log("new destination" + destination);
 					if (distances.rows[0].elements[j].status == 'OK') {
+                        console.log("inside the inner if, status must be okay ");
 						dist = distances.rows[i].elements[j].distance.text;
+                        //	console.log("distance (another variable, what the other dev was doing?)  " +dist);
 						console.log(dist);
 						console.log('Distance from ' + org + ' to ' + dest + ' is ' + dist);
 						var orginal_amount = 500;
@@ -109,196 +116,197 @@ console.log("log1");
 						if ((user_gms1 > 0 && user_gms1 <= 50) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 > 0 && user_gms1 <= 50) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 > 0 && user_gms1 <= 50) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 > 0 && user_gms1 <= 50) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 > 0 && user_gms1 <= 50) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 51 && user_gms1 <= 200) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 51 && user_gms1 <= 200) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 51 && user_gms1 <= 200) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 51 && user_gms1 <= 200) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 51 && user_gms1 <= 200) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 201 && user_gms1 <= 500) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 201 && user_gms1 <= 500) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 201 && user_gms1 <= 500) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 201 && user_gms1 <= 500) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 >= 201 && user_gms1 <= 500) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((user_gms1 > 500) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((user_gms1 > 500) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((user_gms1 > 500) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((user_gms1 > 500) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = 'add 500 gms';
-
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((user_gms1 > 500) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = 'add 500 gms';
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight > 0 && weight <= 50) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight > 0 && weight <= 50) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight > 0 && weight <= 50) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight > 0 && weight <= 50) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight > 0 && weight <= 50) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '1 - 50 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 51 && weight <= 200) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 51 && weight <= 200) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
-
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight >= 51 && weight <= 200) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 51 && weight <= 200) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 51 && weight <= 200) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '51 - 200 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 201 && weight <= 500) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 201 && weight <= 500) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 201 && weight <= 500) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 201 && weight <= 500) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight >= 201 && weight <= 500) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = '201 - 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 
 						} else if ((weight > 500) && (dist >= '1 km' && dist <= '100 km')) {
 							your_column_name = 'kms1_100';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight > 500) && (dist >= '100 km' && dist <= '200 km')) {
 							your_column_name = 'kms100_200';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight > 500) && (dist >= '201 km' && dist <= '999 km')) {
 							your_column_name = 'kms200_1000';
 							weightGroup = 'add 500 gms';
-							console.log("success");
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight > 500) && (dist >= '1000 km' && dist <= '2000 km')) {
 							your_column_name = 'kms1001_2000';
 							weightGroup = 'add 500 gms';
-
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						} else if ((weight > 500) && (dist >= '2000 km')) {
 							your_column_name = 'above2000kms';
 							weightGroup = 'add 500 gms';
+                            console.log("success" + your_column_name + "  " + weightGroup);
 						}
 
 
 						connection.query("select ?? from rates where weights = ?;select ?? from metro where weights = ?;select deliverytime1 from deliverytime where deliverytime5 ='sample1';select servicetype4 from ServiceType where servicetype1 = 'PREMIUM';select servicetype1 from ServiceType where servicetype4 = 'STANDARD' ;INSERT INTO store1 SET org = ?, dest = ?, dob = ?, weight = ?, package = ?, length = ?, width = ?, height = ?;INSERT INTO store1 SET org = ?, dest = ?, dob = ?, weight = ?, package = ?, length = ?, width = ?, height = ?, user_gms1 = ?", [your_column_name, weightGroup, your_column_name, weightGroup, org, dest, dob, weight, package, length, width, height, org, dest, dob, weight, package, length, width, height, user_gms1], function (error, data) {
-							console.log(JSON.stringify(data[3]));
+                            console.log("getting data from rates table" + JSON.stringify(data[3]));
 
 							if ((user_gms1 > 500) && (dist >= '1 km' && dist <= '100 km')) {
 								var str = JSON.stringify(data[0]);
@@ -308,8 +316,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
 								total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -325,9 +335,11 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
-								//res.send({data: total_amount1,data1: total_amount2});
+
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -343,8 +355,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -360,8 +374,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -377,7 +393,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -393,8 +412,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -410,8 +431,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -427,8 +450,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -444,9 +469,10 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								console.log(str5);
-								total_amount2 = 30 + Number(str5);
-								//res.send({data: total_amount1,data1: total_amount2});
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -462,8 +488,9 @@ console.log("log1");
 								total_amount1 = 30 + Number(str2);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
-								total_amount2 = 30 + Number(str5);
-								// res.send({data: total_amount1,data1: total_amount2});
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+                                console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
 								res.send({
 									data: total_amount1,
 									data1: total_amount2,
@@ -481,6 +508,9 @@ console.log("log1");
 								var str3 = JSON.stringify(data[1]);
 								var str4 = str3.substr(17, 19);
 								var str5 = str4.substr(0, 3);
+                                console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                total_amount2 = 30 + Number(str5);
+                                console.log("printing the total amount " + total_amount2);
 								res.send({
 									data: str2,
 									data1: str5,
