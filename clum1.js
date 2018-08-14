@@ -19,7 +19,7 @@ connection.connect(function(err) {
 	  if (err) throw err;
 
   console.log('You are now connected with mysql database...')
-})
+});
 var engines = require('consolidate');
 
 app.set('web1', __dirname + '/web1');
@@ -849,12 +849,12 @@ app.post('/api/insert', function (req, res) {
     }
 });
 app.get('/customer', function (req, res) {
-	var data1,data2
+    var data1, data2;
 	var data = {
 		 "error": 1,
 		"deliverytime": "",
 		"ServiceType": ""
-	}
+    };
    connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error,data) {
 	  if (error) throw error;
 	  
@@ -1190,7 +1190,7 @@ var data = {
          }
          else{
              //req.flash('info', 'you must enter your username and password to login');
-			 message ="invalid username and password"
+             message = "invalid username and password";
 			  res.sendFile( __dirname + "/" + "relax/dash.html",{ message: message } );
 			  data["error"] = 0;
 				data["report"] = rows;

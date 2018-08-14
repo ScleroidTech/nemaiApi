@@ -91,7 +91,16 @@ console.log("log1");
 	distance.units('metric');
 
 	distance.matrix(org, dest, function (err, distances) {
-        console.log("distances  " + distances.toString());
+        if (err) {
+            console.log(err);
+        }
+        if (!distances) {
+            console.log('no distances');
+        }
+        if (distances.error_message) {
+            // API errors
+            console.log(distances.error_message);
+        }
         if (distances.status === 'OK') {
             console.log("inside the if means distance status is ok ");
 			for (var i = 0; i < org.length; i++) {
@@ -502,6 +511,7 @@ console.log("log1");
 								//console.log(total_amount2);
 							} else {
 
+
 								var str = JSON.stringify(data[0]);
 								var str1 = str.substr(17, 19);
 								var str2 = str1.substr(0, 5);
@@ -520,7 +530,8 @@ console.log("log1");
 								});
 								//res.send('./', {data: str2,data1: str5});
 
-							}
+
+                            }
 						});
 
 
@@ -532,6 +543,17 @@ console.log("log1");
 				}
 			}
 		}
+        else {
+            console.log("Something went wrong");
+            console.log(distances.error_message);
+            var dataLog = {
+                "message": "Something went terribly wrong here",
+                "error": ""
+            };
+            dataLog.error = err;
+            res.status(400).json(dataLog);
+        }
+
 	});
 
 	app.get('/customer', function (req, res) {

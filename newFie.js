@@ -19,7 +19,7 @@ connection.connect(function(err) {
 	  if (err) throw err;
 
   console.log('You are now connected with mysql database...')
-})
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Body parser use JSON data
@@ -429,12 +429,12 @@ res.send( {data: total_amount1,data1: total_amount2,data3:JSON.stringify(data[3]
 
 
 app.get('/customer', function (req, res) {
-	var data1,data2
+    var data1, data2;
 	var data = {
 		 "error": 1,
 		"deliverytime": "",
 		"ServiceType": ""
-	}
+    };
    connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error,data) {
 	  if (error) throw error;
 	  

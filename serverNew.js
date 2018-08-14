@@ -19,7 +19,7 @@ connection.connect(function(err) {
 	  if (err) throw err;
 
   console.log('You are now connected with mysql database...')
-})
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Body parser use JSON data
@@ -90,7 +90,8 @@ if (distances.status == 'OK') {
                 if (distances.rows[0].elements[j].status == 'OK') {
                      dist = distances.rows[i].elements[j].distance.text;
 					console.log(dist);
-                    console.log('Distance from ' + org + ' to ' + dest + ' is ' + dist					   var orginal_amount=500;
+                    console.log('Distance from ' + org + ' to ' + dest + ' is ' + dist;
+                    var orginal_amount = 500;
 						   var total_amount,total_amount1;
 						 var weightGroup;
                          var your_column_name;
@@ -428,12 +429,12 @@ res.send( {data: total_amount1,data1: total_amount2,data3:JSON.stringify(data[3]
 
 
 app.get('/customer', function (req, res) {
-	var data1,data2
+    var data1, data2;
 	var data = {
 		 "error": 1,
 		"deliverytime": "",
 		"ServiceType": ""
-	}
+    };
    connection.query("select servicetype1 from ServiceType where servicetype4 = 'STANDARD';select deliverytime1 from deliverytime where deliverytime5 = 'sample1';select deliverytime3 from deliverytime where deliverytime4 = 'sample2'", function (error,data) {
 	  if (error) throw error;
 	  
