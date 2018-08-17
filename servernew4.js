@@ -68,15 +68,15 @@ function getData(total_amount1, total_amount2, data) {
 }
 
 function sendCourier(data, res) {
-    var str = JSON.stringify(data[0]);
-    var str3 = JSON.stringify(data[1]);
-    var str1 = str.substr(17, 19);
-    var str2 = str1.substr(0, 5);
-    var total_amount1 = 30 + Number(str2);
-    var str4 = str3.substr(17, 19);
-    var str5 = str4.substr(0, 3);
-    console.log("printing the result, I guess " + str + str1 + str2 + str3 + str4 + str5);
-    var total_amount2 = 30 + Number(str5);
+    var strRates = JSON.stringify(data[0]);
+    var strServiceType = JSON.stringify(data[1]);
+    var strRate = strRates.substr(17, 19);
+    var strAmt = strRate.substr(0, 5);
+    var total_amount1 = 30 + Number(strAmt);
+    var strServiceFirst = strServiceType.substr(17, 19);
+    var strService = strServiceFirst.substr(0, 3);
+    console.log("printing the result, I guess " + " strRates: " + strRates + " \n strRate" + strRate + " \n strAmt" + strAmt + " \n strServiceType " + strServiceType + " \n strServiceFirst" + strServiceFirst + " \n strService" + strService);
+    var total_amount2 = 30 + Number(strService);
 
     console.log("printing the total amount " + " 1 " + total_amount1 + "  " + total_amount2);
     res.send(getData(total_amount1, total_amount2, data));
