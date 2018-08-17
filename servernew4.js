@@ -56,6 +56,8 @@ app.post('/search', function (req, response) {
 var distance = require('google-distance-matrix');
 
 function getData(total_amount1, total_amount2, data) {
+    console.log(data.length + "");
+    console.log(data);
     return {
         data: total_amount1,
         data1: total_amount2,
@@ -65,7 +67,7 @@ function getData(total_amount1, total_amount2, data) {
     };
 }
 
-function createCouriers(data, res) {
+function sendCourier(data, res) {
     var str = JSON.stringify(data[0]);
     var str3 = JSON.stringify(data[1]);
     var str1 = str.substr(17, 19);
@@ -113,7 +115,8 @@ console.log("log1");
 	var dist;
     console.log(dest);
 	//console.log("log2");//AIzaSyAykFlST8qAZY7EzGLEN4lTTNpPirenuVE//AlzaSyBQVmATq4mGUO3FKDaxNQb8bDQhqtEpASU
-	distance.key('AIzaSyCgbkUKubYAtJTWwSEdSh39yLsOAM_POHw');
+    //distance.key('AIzaSyCgbkUKubYAtJTWwSEdSh39yLsOAM_POHw'); key manoj account
+    distance.key('AIzaSyCLozYrHhZmqvGWDmo_QGNoEoZsQJbpQWQ');
 	distance.units('metric');
 
 	distance.matrix(org, dest, function (err, distances) {
@@ -342,7 +345,23 @@ console.log("log1");
 
 
                             connection.query("select ?? from rates where weights = ?;select ?? from metro where weights = ?;select deliverytime1 from deliverytime where deliverytime5 ='sample1';select servicetype4 from ServiceType where servicetype1 = 'PREMIUM';select servicetype1 from ServiceType where servicetype4 = 'STANDARD' ;INSERT INTO store1 SET org = ?, dest = ?, dob = ?, weight = ?, package = ?, length = ?, width = ?, height = ?;INSERT INTO store1 SET org = ?, dest = ?, dob = ?, weight = ?, package = ?, length = ?, width = ?, height = ?, user_gms1 = ?", [your_column_name, weightGroup, your_column_name, weightGroup, org, dest, dob, weight, package, length, width, height, org, dest, dob, weight, package, length, width, height, user_gms1], function (error, data) {
-                                createCouriers(data, res);
+                                //   console.log("getting data from rates table" + JSON.stringify(data[3]));
+
+
+                                sendCourier(data, res);
+                                /* Redundant Code, Not sure why it was here and what it was supposed to do
+                                 else {
+                                      var str = JSON.stringify(data[0]);
+                                      var str1 = str.substr(17, 19);
+                                      var str2 = str1.substr(0, 5);
+                                      var str3 = JSON.stringify(data[1]);
+                                      var str4 = str3.substr(17, 19);
+                                      var str5 = str4.substr(0, 3);
+                                      console.log("printing the result else part, I guess " + str + str1 + str2 + str3 + str4 + str5);
+                                      total_amount2 = 30 + Number(str5);
+                                      console.log("printing the total amount " + total_amount2);
+                                      res.send(getData(str2,str5, data));
+                                  }*/
                             });
 
 
