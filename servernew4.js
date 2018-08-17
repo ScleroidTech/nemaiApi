@@ -68,6 +68,8 @@ function getData(total_amount1, total_amount2, data) {
 }
 
 function sendCourier(data, res) {
+
+    //TODO Change this to generate courier lists, and send them to local dataset
     var strRates = JSON.stringify(data[0]);
     var strServiceType = JSON.stringify(data[1]);
     var strRate = strRates.substr(17, 19);
